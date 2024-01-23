@@ -1,0 +1,89 @@
+:root{ /* Variables globales */
+    --body-bg: #123;
+    --nav-bg: rgb(69,92,115);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: system-ui;
+}
+
+body {
+    min-height:100vh; /* viewport height (altura de la pagina completa) 100vh = 100%*/
+    margin: 0;
+    font-size: 1.25rem;
+    background: var(--body-bg);
+    color: ghostwhite;
+    display: grid;
+    grid-template-columns: 16.5rem 1fr; /* rem -> root element (size) fr -> fraction  */
+    /* Se especifica el espaciado entre cada columna, y es especifico,*/
+    /* si son 3 columna seria: 20rem 20rem 20rem*/
+    gap: 4rem;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    height: 100vh; /* vh -> height vw -> width*/
+    background: var(--nav-bg);
+}
+
+.nav-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    display: grid;
+    gap: 4rem;
+    padding-block: 2rem; /*padding top & bottom*/
+    font-size: 2.5rem;
+    margin-left: 2rem;
+    
+}
+
+.nav-list li{
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
+    border-radius: 100vw 0 0 100vw;
+    /* arriba izquierda, arriba derecha,
+     abajo derecha, abajo izquierda */
+
+}
+
+.nav-list li.active {
+    background: var(--body-bg);
+    position: relative;
+}
+
+.nav-list li.active::before,
+.nav-list li.active::after{
+    --border-radius: 2rem;
+
+    content: '';
+    position: absolute;
+    width: var(--border-radius);
+    height: var(--border-radius);
+    right: 0;
+    background: var(--nav-bg);
+}
+
+.nav-list li.active::before{
+    top: calc(var(--border-radius) * -1);
+    border-radius: 0 0 100vw 0;
+    box-shadow: 10px 10px 0 10px var(--body-bg);
+    /* Offset, blur, stroke, color */
+}
+
+.nav-list li.active::after{
+    bottom: calc(var(--border-radius) * -1);
+    border-radius: 0 100vw 0 0;
+    box-shadow: 10px -10px 0 10px var(--body-bg);
+}
+.nav-list a {
+    list-style: none;
+    color:ghostwhite;
+    text-decoration: none;
+}
